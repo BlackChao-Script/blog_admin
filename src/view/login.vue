@@ -91,7 +91,7 @@ const login = () => {
       //* 跳转至home
       $router.push('/home')
     }).catch(() => {
-      ElMessage.error('登录失败')
+      ElMessage.error('账号或密码错误')
     })
   })
 }
