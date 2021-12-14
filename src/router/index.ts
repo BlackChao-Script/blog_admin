@@ -9,6 +9,17 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/home',
     component: () => import('../view/home.vue'),
+    redirect: '/home/systemIntroduction',
+    children: [
+      {
+        path: 'systemIntroduction',
+        component: () => import('../view/homePage/systemIntroduction.vue'),
+      },
+      {
+        path: 'blogadmin',
+        component: () => import('../view/homePage/blogadmin.vue'),
+      },
+    ],
   },
 ]
 

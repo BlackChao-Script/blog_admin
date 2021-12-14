@@ -1,27 +1,41 @@
 <template>
-  <el-aside width="200px">
+  <el-aside :width="store.state.showAsideMenu ? '64px' : '200px'">
     <div class="aside_heard">
       <div class="heard_img">
-        <img src="../assets/img/uugai.com-1038391-16393953222477.png" />
+        <img src="../../assets/img/uugai.com-1038391-16393953222477.png" />
       </div>
-      <div class="heard_title">blog_admin</div>
+      <div class="heard_title" v-if="!store.state.showAsideMenu">blog_admin</div>
     </div>
     <el-menu
+      :collapse-transition="false"
+      :collapse="store.state.showAsideMenu"
       active-text-color="#c15b56"
       background-color="#342235"
       class="el-menu-vertical-demo"
-      default-active="1"
+      :default-active="data.DefaultActive"
       text-color="#fff"
+      :router="true"
       :default-openeds="data.openedsArr"
+      @select="SavePath"
     >
-      <el-menu-item index="1">
+      <el-sub-menu index="1">
         <template #title>
           <el-icon>
-            <data-analysis />
+            <stopwatch />
           </el-icon>
-          <span>系统简介</span>
+          <span>Dashboard</span>
         </template>
-      </el-menu-item>
+        <el-menu-item-group>
+          <el-menu-item index="/home/systemIntroduction">
+            <template #title>
+              <el-icon>
+                <DataAnalysis />
+              </el-icon>
+              <span>系统介绍</span>
+            </template>
+          </el-menu-item>
+        </el-menu-item-group>
+      </el-sub-menu>
       <el-sub-menu index="2">
         <template #title>
           <el-icon>
@@ -30,7 +44,7 @@
           <span>博文管理</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="2-1">
+          <el-menu-item index="/home/blogadmin">
             <template #title>
               <el-icon>
                 <document />
@@ -42,6 +56,14 @@
             <template #title>
               <el-icon>
                 <document-checked />
+              </el-icon>
+              <span>博文详细管理</span>
+            </template>
+          </el-menu-item>
+          <el-menu-item index="2-3">
+            <template #title>
+              <el-icon>
+                <plus />
               </el-icon>
               <span>博文详细管理</span>
             </template>
@@ -116,6 +138,7 @@
 
 <script setup lang='ts'>
 import {
+  Stopwatch,
   Folder,
   DataAnalysis,
   Document,
@@ -126,21 +149,39 @@ import {
   User,
   Iphone,
   Lock,
-  Setting
+  Setting,
+  Plus
 } from '@element-plus/icons-vue'
 import { reactive } from 'vue-demi';
+import { useStore } from 'vuex';
+
 //! 约束接口
 interface IDataType {
-  openedsArr: Array<string>
+  openedsArr: Array<string>,
+  DefaultActive: any
 }
+
+//! 数据
 const data = reactive<IDataType>({
-  openedsArr: ['2', '3', '4', '5']
+  openedsArr: ['1', '2', '3', '4', '5'],
+  DefaultActive: '/home/systemIntroduction'
 })
+
+//! 使用vuex
+const store = useStore()
+
+//! 方法
+//* 保存当前路径
+const SavePath = (index: any) => {
+  window.sessionStorage.setItem('path', index)
+}
+data.DefaultActive = window.sessionStorage.getItem('path')
 </script>
 
 <style scoped lang="scss">
 .el-aside {
   .el-menu {
+   
     height: 100vh;
     border-right: 0 !important;
   }
@@ -150,7 +191,7 @@ const data = reactive<IDataType>({
     color: #fff;
     background-color: #342235;
     .heard_img {
-      width: 90px;
+      width: 65px;
       height: 55px;
       img {
         width: 100%;

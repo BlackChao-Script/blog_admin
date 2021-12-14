@@ -37,6 +37,7 @@ import { reactive, ref } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { loginUser } from '../api/login'
+import { useStore } from 'vuex'
 
 //! 定义接口
 interface from {
@@ -47,6 +48,7 @@ interface loginFrom {
   username: Array<object>
   password: Array<object>
 }
+
 //! 登录表单的数据绑定对象
 const loginFrom = reactive<from>({
   //* 用户名
@@ -54,6 +56,7 @@ const loginFrom = reactive<from>({
   //* 密码
   password: '',
 })
+
 //! 表单验证规则
 const loginFromRules = reactive<loginFrom>({
   //* 验证用户名是否合法
@@ -67,14 +70,21 @@ const loginFromRules = reactive<loginFrom>({
     { min: 6, max: 15, message: '长度在 6 到 15 个字符', trigger: 'blur' },
   ],
 })
+
 //! 使用路由
 const $router = useRouter()
+
+//! 使用vuex
+const store = useStore()
+
 //! 获取ref
 const loginFormRef = ref<any>(null)
+
 //! 点击重置按钮重置登录表单
 const resetLoginForm = () => {
   loginFormRef.value.resetFields()
 }
+
 //! 点击登录
 const login = () => {
   loginFormRef.value.validate((valid: any) => {
@@ -88,6 +98,9 @@ const login = () => {
       })
       //* 保存token
       window.sessionStorage.setItem('token', res.data.result.token)
+      //* 保存用户名
+      window.sessionStorage.setItem('usename', loginFrom.username)
+      store.state.userName = window.sessionStorage.getItem('usename')
       //* 跳转至home
       $router.push('/home')
     }).catch(() => {
@@ -101,7 +114,7 @@ const login = () => {
 .login_container {
   position: relative;
   height: 100%;
-  background: linear-gradient(125deg, #c15b56, #b47c6f, #342235);
+  background: linear-gradient(125deg, #4e3150, #b47c6f, #342235);
   background-size: 400%;
   animation: bganimation 5s infinite;
   .login_box {
@@ -111,7 +124,7 @@ const login = () => {
     transform: translate(-50%, -50%);
     width: 400px;
     height: 310px;
-    background-color: #b47c6f;
+    background-color: #342235;
     border-radius: 10px;
     box-shadow: 3px 10px 10px rgba(0, 0, 0, 0.5);
     .box_title {
