@@ -46,7 +46,4 @@ const data = reactive<IDataType>({
     margin-top: 20px;
   }
 }
-.el-card {
-  margin-top: 20px;
-}
 </style>

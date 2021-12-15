@@ -92,6 +92,10 @@ const toggleCollapse = () => {
 //* 退出登录
 const nextLogin = () => {
    $router.push('/login')
+   window.sessionStorage.setItem('path', '/home/systemIntroduction')
+   window.sessionStorage.removeItem('token')
+   store.state.DefaultActive = window.sessionStorage.getItem('path')
+
 }
 //* 控制弹出框图标
 const showIconMethod = () => {

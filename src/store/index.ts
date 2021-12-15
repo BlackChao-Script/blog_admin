@@ -8,6 +8,10 @@ export default createStore({
     showAsideMenu: false,
     //! 用户名
     userName: '',
+    //! 菜单栏默认选中的值
+    DefaultActive: '/home/systemIntroduction',
+    //! 当前要修改的博文数据
+    CurrentMdData: {},
   },
   mutations: {},
   actions: {},

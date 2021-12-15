@@ -12,7 +12,7 @@
       active-text-color="#c15b56"
       background-color="#342235"
       class="el-menu-vertical-demo"
-      :default-active="data.DefaultActive"
+      :default-active="store.state.DefaultActive"
       text-color="#fff"
       :router="true"
       :default-openeds="data.openedsArr"
@@ -60,12 +60,12 @@
               <span>博文详细管理</span>
             </template>
           </el-menu-item>
-          <el-menu-item index="2-3">
+          <el-menu-item index="/home/addblog">
             <template #title>
               <el-icon>
                 <plus />
               </el-icon>
-              <span>博文详细管理</span>
+              <span>添加(修改)博文</span>
             </template>
           </el-menu-item>
         </el-menu-item-group>
@@ -157,14 +157,12 @@ import { useStore } from 'vuex';
 
 //! 约束接口
 interface IDataType {
-  openedsArr: Array<string>,
-  DefaultActive: any
+  openedsArr: Array<string>
 }
 
 //! 数据
 const data = reactive<IDataType>({
-  openedsArr: ['1', '2', '3', '4', '5'],
-  DefaultActive: '/home/systemIntroduction'
+  openedsArr: ['1', '2', '3', '4', '5']
 })
 
 //! 使用vuex
@@ -175,13 +173,12 @@ const store = useStore()
 const SavePath = (index: any) => {
   window.sessionStorage.setItem('path', index)
 }
-data.DefaultActive = window.sessionStorage.getItem('path')
+store.state.DefaultActive = window.sessionStorage.getItem('path')
 </script>
 
 <style scoped lang="scss">
 .el-aside {
   .el-menu {
-   
     height: 100vh;
     border-right: 0 !important;
   }

@@ -19,6 +19,10 @@ const routes: Array<RouteRecordRaw> = [
         path: 'blogadmin',
         component: () => import('../view/homePage/blogadmin.vue'),
       },
+      {
+        path: 'addblog',
+        component: () => import('../view/homePage/addblog.vue'),
+      },
     ],
   },
 ]
