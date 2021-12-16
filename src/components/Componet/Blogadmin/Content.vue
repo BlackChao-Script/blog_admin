@@ -98,6 +98,7 @@ const toAddAdmin = () => {
   $router.push(`/home/addblog`)
   window.sessionStorage.setItem('path', '/home/addblog')
   store.state.DefaultActive = window.sessionStorage.getItem('path')
+  store.state.CurrentMdData = {}
 }
 //* 改变每页条数时触发的钩子
 const handleSizeChange = (val: any) => {

@@ -21,7 +21,7 @@
       </el-row>
     </el-form-item>
     <el-form-item label="博文照片">
-      <el-row>
+      <el-row v-if="!store.state.CurrentMdData.id">
         <el-col :span="10">
           <el-upload
             :action="data.uploadURL"
@@ -36,6 +36,11 @@
               <plus />
             </el-icon>
           </el-upload>
+        </el-col>
+      </el-row>
+      <el-row v-else class="img">
+        <el-col :span="24">
+          <el-image :src="store.state.CurrentMdData.markdown_img"></el-image>
         </el-col>
       </el-row>
     </el-form-item>
@@ -70,10 +75,10 @@
     </el-form-item>
     <el-form-item label="博文标题" prop="markdown_title">
       <el-row>
-        <el-col :span="6">
+        <el-col :span="12">
           <el-input
+            :autosize="true"
             :clearable="true"
-            :maxlength="200"
             :show-word-limit="true"
             v-model="data.blogForm.markdown_title"
             type="textarea"
@@ -83,13 +88,19 @@
     </el-form-item>
     <el-form-item>
       <el-button
-        v-if="store.state.DefaultActive == ''"
+        v-if="!store.state.CurrentMdData.id"
         :icon="Plus"
         type="warning"
         color="#342235"
         @click="submitBlogForm"
       >立即添加</el-button>
-      <el-button v-else :icon="Edit" type="warning" color="#342235" @click="submitBlogForm">立即修改</el-button>
+      <el-button
+        v-else
+        :icon="Edit"
+        type="warning"
+        color="#342235"
+        @click="submitModifyBlogForm"
+      >立即修改</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -101,7 +112,7 @@ import { onMounted, reactive, ref } from 'vue-demi';
 import { useStore } from 'vuex';
 import { ElMessage } from 'element-plus'
 import { getSortData } from '../../../api/sort'
-import { addMd } from '../../../api/md'
+import { addMd, modifyMDData } from '../../../api/md'
 import { useRouter } from 'vue-router';
 
 //! 约束接口
@@ -151,12 +162,6 @@ const data = reactive<IDataType>({
       {
         required: true,
         message: '请输入博文标题',
-        trigger: 'blur',
-      },
-      {
-        min: 2,
-        max: 200,
-        message: '博文标题长度在2到200之间',
         trigger: 'blur',
       },
     ],
@@ -240,14 +245,48 @@ const submitBlogForm = () => {
 
   })
 }
+//* 修改博文
+const submitModifyBlogForm = () => {
+  blogForm.value.validate((vaild: any) => {
+    if (!vaild) return
+    const img = data.blogForm.markdown_img.split('/')[4]
+    modifyMDData(
+      store.state.CurrentMdData.id,
+      data.blogForm.markdown_name,
+      data.blogForm.article_user,
+      data.blogForm.markdown_title,
+      img,
+      data.blogForm.sort_id,
+      data.blogForm.sort_class,
+    ).then(() => {
+      ElMessage({
+        message: '博文修改成功',
+        type: 'success',
+      })
+      $router.push('/home/blogadmin')
+      window.sessionStorage.setItem('path', '/home/blogadmin')
+      store.state.DefaultActive = window.sessionStorage.getItem('path')
+      data.blogForm = {}
+    }).catch(() => ElMessage.error('博文修改失败'))
+
+  })
+}
 
 //! 生命周期函数
 onMounted(() => {
-  getSortDatas()
   data.blogForm = store.state.CurrentMdData
+  getSortDatas()
 })
 
 </script>
 
 <style scoped lang="scss">
+.img {
+  width: 148px;
+  height: 148px;
+  .el-image {
+    width: 100%;
+    height: 100%;
+  }
+}
 </style>

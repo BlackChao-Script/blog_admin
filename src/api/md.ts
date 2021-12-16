@@ -35,7 +35,7 @@ export const addMd = (
 }
 
 //! 删除md文件
-export const deleteMdData = (md_id: any) => {
+export const deleteMdData = (md_id: string) => {
   return request({
     method: 'delete',
     url: `md/${md_id}`,
@@ -43,9 +43,25 @@ export const deleteMdData = (md_id: any) => {
 }
 
 //! 修改md文件
-export const modifyMDData = (md_id: any) => {
+export const modifyMDData = (
+  md_id: string,
+  markdown_name: string,
+  article_user: string,
+  markdown_title: string,
+  markdown_img: string,
+  sort_id: number,
+  sort_class: string
+) => {
   return request({
     method: 'put',
     url: `md/${md_id}`,
+    data: {
+      markdown_name,
+      article_user,
+      markdown_title,
+      markdown_img,
+      sort_id,
+      sort_class,
+    },
   })
 }
