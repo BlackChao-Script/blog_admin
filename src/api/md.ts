@@ -10,7 +10,6 @@ export const getMdData = (paegNum: any, pageSize: any) => {
     },
   })
 }
-
 //! 添加md文件
 export const addMd = (
   markdown_name: string,
@@ -33,7 +32,6 @@ export const addMd = (
     },
   })
 }
-
 //! 删除md文件
 export const deleteMdData = (md_id: string) => {
   return request({
@@ -41,7 +39,6 @@ export const deleteMdData = (md_id: string) => {
     url: `md/${md_id}`,
   })
 }
-
 //! 修改md文件
 export const modifyMDData = (
   md_id: string,
@@ -62,6 +59,16 @@ export const modifyMDData = (
       markdown_img,
       sort_id,
       sort_class,
+    },
+  })
+}
+//! 获取md详细文件列表数据
+export const getMdDetListData = (paegNum: any, pageSize: any) => {
+  return request({
+    url: 'md/mdDetList',
+    params: {
+      paegNum,
+      pageSize,
     },
   })
 }

@@ -52,7 +52,7 @@
               <span>博文文件管理</span>
             </template>
           </el-menu-item>
-          <el-menu-item index="2-2">
+          <el-menu-item index="/home/blogadmindet">
             <template #title>
               <el-icon>
                 <document-checked />
@@ -173,7 +173,12 @@ const store = useStore()
 const SavePath = (index: any) => {
   window.sessionStorage.setItem('path', index)
 }
-store.state.DefaultActive = window.sessionStorage.getItem('path')
+if (window.sessionStorage.getItem('path')) {
+  store.state.DefaultActive = window.sessionStorage.getItem('path')
+} else {
+  store.state.DefaultActive = '/home/systemIntroduction'
+}
+
 </script>
 
 <style scoped lang="scss">

@@ -1,6 +1,8 @@
 <template>
+  <!-- 按钮 -->
   <el-button :icon="Plus" type="warning" color="#342235" @click="toAddAdmin">添加博文</el-button>
-  <el-table :data="data.mdData" stripe style="width: 100%">
+  <!-- 表格 -->
+  <el-table v-loading="data.loading" :data="data.mdData" stripe style="width: 100%">
     <el-table-column prop="id" label="博文编号" />
     <el-table-column prop="markdown_name" label="博文名称" />
     <el-table-column prop="markdown_title" label="博文介绍">
@@ -34,6 +36,7 @@
       </template>
     </el-table-column>
   </el-table>
+  <!-- 分页器 -->
   <div class="demo-pagination-block">
     <el-row type="flex" justify="center">
       <el-col :span="5">
@@ -64,6 +67,7 @@ interface IDataType {
   paegNum: number
   pageSize: number
   total: number
+  loading: boolean
 }
 
 //! 数据
@@ -71,7 +75,8 @@ const data = reactive<IDataType>({
   mdData: [],
   paegNum: 1,
   pageSize: 4,
-  total: 0
+  total: 0,
+  loading: true
 })
 
 //! 使用vuex
@@ -88,6 +93,7 @@ const getMdDatas = async () => {
   for (const i of arr) {
     i.markdown_img = store.state.ImgBaseUrl + i.markdown_img
   }
+  data.loading = false
   data.total = res.data.result.total * 1
   data.paegNum = res.data.result.paegNum * 1
   data.pageSize = res.data.result.pageSize * 1

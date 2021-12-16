@@ -13,15 +13,19 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'systemIntroduction',
-        component: () => import('../view/homePage/systemIntroduction.vue'),
+        component: () => import('../view/Dashboard/systemIntroduction.vue'),
       },
       {
         path: 'blogadmin',
-        component: () => import('../view/homePage/blogadmin.vue'),
+        component: () => import('../view/blog/blogadmin.vue'),
       },
       {
         path: 'addblog',
-        component: () => import('../view/homePage/addblog.vue'),
+        component: () => import('../view/blog/addblog.vue'),
+      },
+      {
+        path: 'blogadmindet',
+        component: () => import('../view/blog/blogadmindet.vue'),
       },
     ],
   },
