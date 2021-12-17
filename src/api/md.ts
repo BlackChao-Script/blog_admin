@@ -72,3 +72,14 @@ export const getMdDetListData = (paegNum: any, pageSize: any) => {
     },
   })
 }
+//! 添加md详细文件
+export const addMdDet = (content_md: string, md_id: string) => {
+  return request({
+    method: 'post',
+    url: 'md/mdDet',
+    data: {
+      content_md,
+      md_id,
+    },
+  })
+}

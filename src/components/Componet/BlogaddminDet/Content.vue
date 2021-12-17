@@ -1,6 +1,6 @@
 <template>
   <!-- 按钮 -->
-  <el-button :icon="Plus" type="warning" color="#342235">添加博文详细文件</el-button>
+  <el-button :icon="Plus" type="warning" color="#342235" @click="toAddBlogDet">添加博文详细文件</el-button>
   <!-- 表格 -->
   <el-table v-loading="data.loading" :data="data.mdDetListData" stripe style="width: 100%">
     <el-table-column prop="id" label="博文详细编号" />
@@ -30,8 +30,10 @@
 </template>
 
 <script setup lang='ts'>
-import { Plus, Delete, Edit } from '@element-plus/icons-vue'
+import { Plus } from '@element-plus/icons-vue'
 import { onMounted, reactive } from 'vue-demi';
+import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 import { getMdDetListData } from '../../../api/md'
 
 //! 约束接口
@@ -51,6 +53,12 @@ const data = reactive<IDataType>({
   total: 0,
   loading: true
 })
+
+//! 使用路由
+const $router = useRouter()
+
+//! 使用vuex
+const store = useStore()
 
 //! 方法
 //* 获取博文数据
@@ -84,6 +92,15 @@ const handleCurrentChange = (val: any) => {
   data.paegNum = val
   getMdDetListDatas()
 }
+//* 点击添加博文跳转至添加博文详细
+const toAddBlogDet = () => {
+  $router.push('/home/addblogdet')
+  window.sessionStorage.setItem('path', '/home/addblogdet')
+  store.state.DefaultActive = window.sessionStorage.getItem('path')
+}
+
+//! 重新赋值
+store.state.DefaultActive = window.sessionStorage.getItem('path')
 
 //! 生命周期函数
 onMounted(getMdDetListDatas)
@@ -92,7 +109,7 @@ onMounted(getMdDetListDatas)
 
 <style scoped lang="scss">
 .el-button {
-  qmargin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .title {
   white-space: nowrap;

@@ -68,6 +68,14 @@
               <span>添加(修改)博文</span>
             </template>
           </el-menu-item>
+          <el-menu-item index="/home/addblogdet">
+            <template #title>
+              <el-icon>
+                <plus />
+              </el-icon>
+              <span>添加博文详细</span>
+            </template>
+          </el-menu-item>
         </el-menu-item-group>
       </el-sub-menu>
       <el-sub-menu index="3">
@@ -78,7 +86,7 @@
           <span>首页管理</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="3-1">
+          <el-menu-item index="/home/carouseladdmin">
             <template #title>
               <el-icon>
                 <trend-charts />

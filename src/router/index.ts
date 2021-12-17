@@ -27,6 +27,14 @@ const routes: Array<RouteRecordRaw> = [
         path: 'blogadmindet',
         component: () => import('../view/blog/blogadmindet.vue'),
       },
+      {
+        path: 'addblogdet',
+        component: () => import('../view/blog/addblogDet.vue'),
+      },
+      {
+        path: 'carouseladdmin',
+        component: () => import('../view/Homepage/carouseladdmin.vue'),
+      },
     ],
   },
 ]

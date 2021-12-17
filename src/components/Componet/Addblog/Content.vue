@@ -214,13 +214,13 @@ const successImg = (file: any) => {
     type: 'success',
   })
   data.disabledUpload = true
-  data.blogForm.markdown_img = file.result.goods_img
+  data.blogForm.markdown_img = file.result.file_path
 }
 //* 图片上传失败时的钩子
 const errorImg = () => {
   ElMessage.error('图片上传失败')
 }
-//* 添加博文
+//* 添加博文提交表单
 const submitBlogForm = () => {
   blogForm.value.validate((vaild: any) => {
     if (!vaild) return
