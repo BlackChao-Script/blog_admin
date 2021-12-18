@@ -46,3 +46,25 @@ export const modifyCarouselData = (
     },
   })
 }
+//! 获取简介数据
+export const getIntroductionData = () => {
+  return request({
+    url: 'home/introduction',
+  })
+}
+//! 修改简介数据
+export const modifyIntroductionData = (
+  id: number,
+  Introduction_sort: string,
+  Introduction_text: string
+) => {
+  return request({
+    method: 'put',
+    url: `home/introduction/${id}`,
+    data: {
+      id,
+      Introduction_sort,
+      Introduction_text,
+    },
+  })
+}

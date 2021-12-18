@@ -94,7 +94,7 @@
               <span>轮播图管理</span>
             </template>
           </el-menu-item>
-          <el-menu-item index="3-2">
+          <el-menu-item index="/home/introductionaddmin">
             <template #title>
               <el-icon>
                 <coffee-cup />

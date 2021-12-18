@@ -11,8 +11,8 @@
 
 <script setup lang='ts'>
 import Breadcrumb from '../../components/Common/Breadcrumb.vue'
-import Content from '../../components/Componet/Carouseladdmin/Content.vue'
-                                                                                                    </script>
+import Content from '../../components/Componet/IntroductionAddmin/Content.vue'
+</script>
 
 <style scoped lang="scss">
 </style>

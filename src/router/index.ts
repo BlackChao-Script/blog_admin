@@ -35,6 +35,10 @@ const routes: Array<RouteRecordRaw> = [
         path: 'carouseladdmin',
         component: () => import('../view/Homepage/carouseladdmin.vue'),
       },
+      {
+        path: 'introductionaddmin',
+        component: () => import('../view/Homepage/introductionaddmin.vue'),
+      },
     ],
   },
 ]
