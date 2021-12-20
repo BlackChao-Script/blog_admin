@@ -47,6 +47,10 @@ const routes: Array<RouteRecordRaw> = [
         path: 'sortaddmin',
         component: () => import('../view/sort/sortaddmin.vue'),
       },
+      {
+        path: 'modifyaboutme',
+        component: () => import('../view/aboutme/modifyaboutme.vue'),
+      },
     ],
   },
 ]

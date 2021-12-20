@@ -97,14 +97,6 @@
               <span>分类管理</span>
             </template>
           </el-menu-item>
-          <el-menu-item index>
-            <template #title>
-              <el-icon>
-                <document-checked />
-              </el-icon>
-              <span>分类详细管理</span>
-            </template>
-          </el-menu-item>
         </el-menu-item-group>
       </el-sub-menu>
       <!-- 首页 -->
@@ -151,7 +143,7 @@
           <span>关于我</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="4-1">
+          <el-menu-item index="/home/modifyaboutme">
             <template #title>
               <el-icon>
                 <iphone />
