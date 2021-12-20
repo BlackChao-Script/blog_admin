@@ -162,12 +162,12 @@
           <span>评论</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index>
+          <el-menu-item index="/home/leavewordaddmin">
             <template #title>
               <el-icon>
                 <chat-line-round />
               </el-icon>
-              <span>管理评论</span>
+              <span>评论管理</span>
             </template>
           </el-menu-item>
         </el-menu-item-group>

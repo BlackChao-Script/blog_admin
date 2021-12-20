@@ -51,6 +51,10 @@ const routes: Array<RouteRecordRaw> = [
         path: 'modifyaboutme',
         component: () => import('../view/aboutme/modifyaboutme.vue'),
       },
+      {
+        path: 'leavewordaddmin',
+        component: () => import('../view/leaveword/leavewordaddmin.vue'),
+      },
     ],
   },
 ]
