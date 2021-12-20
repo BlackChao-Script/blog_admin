@@ -68,3 +68,25 @@ export const modifyIntroductionData = (
     },
   })
 }
+//! 获取图标数据
+export const getIconData = () => {
+  return request({
+    url: 'home/icon',
+  })
+}
+//! 修改图标数据
+export const modifyIconData = (
+  id: number,
+  icon_src: string,
+  icon_link: string
+) => {
+  return request({
+    method: 'put',
+    url: `home/icon/${id}`,
+    data: {
+      id,
+      icon_src,
+      icon_link,
+    },
+  })
+}

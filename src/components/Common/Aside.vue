@@ -15,9 +15,10 @@
       :default-active="store.state.DefaultActive"
       text-color="#fff"
       :router="true"
-      :default-openeds="data.openedsArr"
       @select="SavePath"
+      :unique-opened="true"
     >
+      <!-- 仪表盘 -->
       <el-sub-menu index="1">
         <template #title>
           <el-icon>
@@ -36,12 +37,13 @@
           </el-menu-item>
         </el-menu-item-group>
       </el-sub-menu>
+      <!-- 博文 -->
       <el-sub-menu index="2">
         <template #title>
           <el-icon>
             <folder />
           </el-icon>
-          <span>博文管理</span>
+          <span>博文</span>
         </template>
         <el-menu-item-group>
           <el-menu-item index="/home/blogadmin">
@@ -78,12 +80,40 @@
           </el-menu-item>
         </el-menu-item-group>
       </el-sub-menu>
+      <!-- 分类 -->
       <el-sub-menu index="3">
+        <template #title>
+          <el-icon>
+            <files />
+          </el-icon>
+          <span>分类</span>
+        </template>
+        <el-menu-item-group>
+          <el-menu-item index="/home/sortaddmin">
+            <template #title>
+              <el-icon>
+                <document />
+              </el-icon>
+              <span>分类管理</span>
+            </template>
+          </el-menu-item>
+          <el-menu-item index>
+            <template #title>
+              <el-icon>
+                <document-checked />
+              </el-icon>
+              <span>分类详细管理</span>
+            </template>
+          </el-menu-item>
+        </el-menu-item-group>
+      </el-sub-menu>
+      <!-- 首页 -->
+      <el-sub-menu index="4">
         <template #title>
           <el-icon>
             <grid />
           </el-icon>
-          <span>首页管理</span>
+          <span>首页</span>
         </template>
         <el-menu-item-group>
           <el-menu-item index="/home/carouseladdmin">
@@ -102,14 +132,23 @@
               <span>简介管理</span>
             </template>
           </el-menu-item>
+          <el-menu-item index="/home/iconaddmin">
+            <template #title>
+              <el-icon>
+                <coffee-cup />
+              </el-icon>
+              <span>个人图标管理</span>
+            </template>
+          </el-menu-item>
         </el-menu-item-group>
       </el-sub-menu>
-      <el-sub-menu index="4">
+      <!-- 关于我 -->
+      <el-sub-menu index="5">
         <template #title>
           <el-icon>
             <user />
           </el-icon>
-          <span>关于我管理</span>
+          <span>关于我</span>
         </template>
         <el-menu-item-group>
           <el-menu-item index="4-1">
@@ -122,7 +161,27 @@
           </el-menu-item>
         </el-menu-item-group>
       </el-sub-menu>
-      <el-sub-menu index="5">
+      <!-- 评论 -->
+      <el-sub-menu index="6">
+        <template #title>
+          <el-icon>
+            <chat-dot-round />
+          </el-icon>
+          <span>评论</span>
+        </template>
+        <el-menu-item-group>
+          <el-menu-item index>
+            <template #title>
+              <el-icon>
+                <chat-line-round />
+              </el-icon>
+              <span>管理评论</span>
+            </template>
+          </el-menu-item>
+        </el-menu-item-group>
+      </el-sub-menu>
+      <!-- 系统管理 -->
+      <el-sub-menu index="7">
         <template #title>
           <el-icon>
             <setting />
@@ -158,20 +217,12 @@ import {
   Iphone,
   Lock,
   Setting,
-  Plus
+  Plus,
+  Files,
+  ChatDotRound,
+  ChatLineRound
 } from '@element-plus/icons-vue'
-import { reactive } from 'vue-demi';
 import { useStore } from 'vuex';
-
-//! 约束接口
-interface IDataType {
-  openedsArr: Array<string>
-}
-
-//! 数据
-const data = reactive<IDataType>({
-  openedsArr: ['1', '2', '3', '4', '5']
-})
 
 //! 使用vuex
 const store = useStore()

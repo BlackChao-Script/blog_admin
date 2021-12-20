@@ -118,7 +118,6 @@ const closeModifyDialog = () => {
 const submitIntroductionFrom = () => {
   IntroductionFrom.value.validate((vaild: any) => {
     if (!vaild) return
-    console.log(data.introductionDataForm)
     modifyIntroductionData(
       data.introductionDataForm.id,
       data.introductionDataForm.Introduction_sort,

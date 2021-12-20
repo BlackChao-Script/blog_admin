@@ -39,6 +39,14 @@ const routes: Array<RouteRecordRaw> = [
         path: 'introductionaddmin',
         component: () => import('../view/Homepage/introductionaddmin.vue'),
       },
+      {
+        path: 'iconaddmin',
+        component: () => import('../view/Homepage/iconaddmin.vue'),
+      },
+      {
+        path: 'sortaddmin',
+        component: () => import('../view/sort/sortaddmin.vue'),
+      },
     ],
   },
 ]

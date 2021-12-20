@@ -1,8 +1,7 @@
 <template>
   <el-card>
-    <!-- 面包屑 -->
     <Breadcrumb>
-      <template v-slot:title>简介管理</template>
+      <template v-slot:title>个人地址图标管理</template>
     </Breadcrumb>
     <!-- 内容 -->
     <Content></Content>
@@ -11,7 +10,7 @@
 
 <script setup lang='ts'>
 import Breadcrumb from '../../components/Common/Breadcrumb.vue'
-import Content from '../../components/Componet/IntroductionAddmin/Content.vue'
+import Content from '../../components/Componet/IconAddmin/Content.vue'
 </script>
 
 <style scoped lang="scss">
