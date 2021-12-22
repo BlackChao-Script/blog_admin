@@ -86,6 +86,7 @@ import { Plus, Edit, Delete } from '@element-plus/icons-vue'
 import { onMounted, reactive, ref } from 'vue-demi'
 import { ElMessage } from 'element-plus'
 import { getSortData, addSort, modifySortData, deleteSortData } from '../../../api/sort'
+import { useStore } from 'vuex'
 
 //! 约束接口
 interface IDataType {

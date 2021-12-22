@@ -11,3 +11,13 @@ export const loginUser = (user_name: string, password: string) => {
     },
   })
 }
+//! 修改密码
+export const modifyPasswordData = (passowrd: string) => {
+  return request({
+    method: 'patch',
+    url: 'user/modify',
+    data: {
+      passowrd,
+    },
+  })
+}

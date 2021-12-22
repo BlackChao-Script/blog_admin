@@ -16,7 +16,7 @@
       text-color="#fff"
       :router="true"
       @select="SavePath"
-      :unique-opened="true"
+      :default-openeds="['1', '2', '3', '4', '5', '6']"
     >
       <!-- 仪表盘 -->
       <el-sub-menu index="1">
@@ -172,25 +172,6 @@
           </el-menu-item>
         </el-menu-item-group>
       </el-sub-menu>
-      <!-- 系统管理 -->
-      <el-sub-menu index="7">
-        <template #title>
-          <el-icon>
-            <setting />
-          </el-icon>
-          <span>系统管理</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item index="5-1">
-            <template #title>
-              <el-icon>
-                <lock />
-              </el-icon>
-              <span>修改密码</span>
-            </template>
-          </el-menu-item>
-        </el-menu-item-group>
-      </el-sub-menu>
     </el-menu>
   </el-aside>
 </template>
@@ -207,8 +188,6 @@ import {
   CoffeeCup,
   User,
   Iphone,
-  Lock,
-  Setting,
   Plus,
   Files,
   ChatDotRound,
@@ -234,8 +213,9 @@ if (window.sessionStorage.getItem('path')) {
 
 <style scoped lang="scss">
 .el-aside {
+  height: 100vh;
   .el-menu {
-    height: 100vh;
+    height: 100%;
     border-right: 0 !important;
   }
   .aside_heard {
